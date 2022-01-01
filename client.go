@@ -22,44 +22,57 @@ func (c *client) read_message() {
 
 		if check_err(err) {
 			return
-		}
+		} else {
+			msg = strings.Trim(msg, "\r\n")
+			args := strings.Split(msg, " ")
+			cmd := strings.TrimSpace(args[0])
 
-		msg = strings.Trim(msg, "\r\n")
-		args := strings.Split(msg, " ")
-		cmd := strings.TrimSpace(args[0])
+			// request builder
+			switch cmd {
+			case "/create":
+				c.requests <- request{
+					id:     CMD_CREATE,
+					client: c,
+					args:   args,
+				}
+			case "/join":
+				c.requests <- request{
+					id:     CMD_JOIN,
+					client: c,
+					args:   args,
+				}
+			case "/nick":
+				c.requests <- request{
+					id:     CMD_NICK,
+					client: c,
+					args:   args,
+				}
+			case "/quit":
+				c.requests <- request{
+					id:     CMD_QUIT,
+					client: c,
+				}
+			case "/rooms":
+				c.requests <- request{
+					id:     CMD_ROOMS,
+					client: c,
+				}
+			case "/msg":
+				c.requests <- request{
+					id:     CMD_MSG,
+					client: c,
+					args:   args,
+				}
+			case "/exit":
+				c.requests <- request{
+					id:     CMD_EXIT,
+					client: c,
+					args:   args,
+				}
 
-		switch cmd {
-		case "/join":
-			c.requests <- request{
-				id:     CMD_JOIN,
-				client: c,
-				args:   args,
+			default:
+				c.send_err(fmt.Errorf("invalid command: %s", cmd))
 			}
-		case "/nick":
-			c.requests <- request{
-				id:     CMD_NICK,
-				client: c,
-				args:   args,
-			}
-		case "/quit":
-			c.requests <- request{
-				id:     CMD_QUIT,
-				client: c,
-			}
-		case "/rooms":
-			c.requests <- request{
-				id:     CMD_ROOMS,
-				client: c,
-			}
-		case "/msg":
-			c.requests <- request{
-				id:     CMD_MSG,
-				client: c,
-				args:   args,
-			}
-
-		default:
-			c.send_err(fmt.Errorf("invalid command: %s", cmd))
 		}
 	}
 }

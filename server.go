@@ -74,9 +74,6 @@ func (s *server) join(c *client, args []string) {
 	// add client to the room members
 	r.members[c.cn.RemoteAddr()] = c
 
-	// remove client from previous room before joining a new one
-	// s.leave_room(c)
-
 	// set client to correct room
 	c.room = r
 	r.declare(c, fmt.Sprintf("%s has joined the room", c.nick))
@@ -106,15 +103,6 @@ func (s *server) create(c *client, args []string) {
 		}
 
 		s.rooms[room_name] = r
-
-		// add client to the map
-		//r.members[c.cn.RemoteAddr()] = c
-
-		// remove client from previous room before joining a new one
-		//s.leave_room(c)
-
-		// set client to correct room
-		//c.room = r
 
 		print("Room '" + room_name + "' has been created" + "\n")
 
@@ -171,6 +159,7 @@ func (s *server) quit_room(c *client) {
 func (s *server) exit(c *client) {
 	s.quit_room(c)
 	c.cn.Close()
+	log.Printf("a client has left the server.")
 }
 
 // case handling for server from client

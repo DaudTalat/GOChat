@@ -20,7 +20,7 @@ func (c *client) read_message() {
 	for {
 		msg, err := bufio.NewReader(c.cn).ReadString('\n') // A delim term, signifies end of message.
 
-		if check_err(err) {
+		if err != nil {
 			return
 		} else {
 			msg = strings.Trim(msg, "\r\n")
@@ -67,7 +67,6 @@ func (c *client) read_message() {
 				c.requests <- request{
 					id:     CMD_EXIT,
 					client: c,
-					args:   args,
 				}
 
 			default:

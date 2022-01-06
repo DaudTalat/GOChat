@@ -17,7 +17,6 @@ export default function SplitButton(props) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
     props.handleSubmit(selectedIndex);
   };
 

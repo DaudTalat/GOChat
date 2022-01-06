@@ -27,14 +27,13 @@ function App() {
 
   async function getData(){
     let response = await axios.get("http://127.0.0.1:8081/",{headers:{'Accept': 'application/json'}});
-    console.log(response)
     if (response.status === 200){
       let data = response.data
       if (data != null){
        setMsg(prevMsg => [...prevMsg,...data])
       }
     }
-    const interval = await new Promise(r=> setTimeout(r,10000));
+    const interval = await new Promise(r=> setTimeout(r,2000));
     setCounter(prev=>prev+1) 
     return ()=>clearInterval(interval)
     
@@ -61,7 +60,6 @@ function App() {
       default:
         break;
     }
-    console.log(body)
     let response = await axios({
       method: 'post',
       url: 'http://127.0.0.1:8081/',

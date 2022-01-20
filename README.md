@@ -5,6 +5,17 @@ GOChat is an encrypted messaging app that allows users to create and host their 
 
 The usage of GOChat is divided up based on the server and user. Users have the option to directly connect with the GOChat server directly using TCP. TCP connections are not recommended and the listener.go program was created to fix some of the usability issues related with raw TCP connections. The listener.go program supports client-side encryption and decryption—this meaning that the server host is unable to read these messages without the appropriate encryption key. 
 
+The commands to interact with server through a console are listed below:
+
+    '/create <name>'     create a room and join it
+    '/join <name>'       join a room with associated room name
+    '/nick <name>'       set name, otherwise name will be "stranger"
+    '/exit'              disconnects from chat server 
+    '/rooms'             show list of available rooms to join
+    '/msg <msg>'         broadcasts message to everyone in a room
+    '/encrypt'           generate AES-256 encryption key for messages
+    '/encrypt <key>'     assign AES-256 encryption key for messages
+
 Alternatively, the user can use to the server using a GUI interface instead of a command line. The GOChat GUI further abstracts the connection process and improves discoverability of features. The GUI sends HTTP requests to the listener.go file which relays the requests to the server. In future, technologies like Web Sockets can be used to improve the frontend preformance.  
 
 ![Alt text](https://media3.giphy.com/media/fSgLXRd90Jk0woZMnj/giphy.gif?cid=790b761177990e962ce38d3d612a2b8dc9f48bea343261e0&rid=giphy.gif&ct=g)
@@ -29,17 +40,7 @@ To connect with the GOChat server using telnet:
     ```ps1
     telnet localhost 8080
     ```
-Press enter to start the connection. After starting up the program, the user can connect with the server using the commands below: 
-
-    '/create <name>'     create a room and join it
-    '/join <name>'       join a room with associated room name
-    '/nick <name>'       set name, otherwise name will be "stranger"
-    '/exit'              disconnects from chat server 
-    '/rooms'             show list of available rooms to join
-    '/msg <msg>'         broadcasts message to everyone in a room
-    '/encrypt'           generate AES-256 encryption key for messages
-    '/encrypt <key>'     assign AES-256 encryption key for messages
-
+2. Press enter to start the connection.
 
 ### Using GOChat With Listener
 To startup the listener:
@@ -48,16 +49,6 @@ To startup the listener:
     ```Powershell
     .\startGoListener.ps1
     ```
-This will run the software in the command-line in port 8080 (can be changed in sourcecode). As before, a variety of features that are given to interact with the server: 
-
-    '/create <name>'     create a room and join it
-    '/join <name>'       join a room with associated room name
-    '/nick <name>'       set name, otherwise name will be "stranger"
-    '/exit'              disconnects from chat server 
-    '/rooms'             show list of available rooms to join
-    '/msg <msg>'         broadcasts message to everyone in a room
-    '/encrypt'           generate AES-256 encryption key for messages
-    '/encrypt <key>'     assign AES-256 encryption key for messages
 
 Note: When using `/encrypt` the encryption key will be set and displayed for use.
 

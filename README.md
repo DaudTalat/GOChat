@@ -3,7 +3,7 @@ GOChat is an encrypted messaging app that allows users to create and host their 
 
 ## Structure 
 
-The usage of GOChat is divided up based on the server and user. Users have the option directly connect with the GOChat server directly using TCP. TCP connections are not recommended and the listener.go program was created to fix some of the usability issues related with raw TCP connections. The listener.go program supports client-side encryption and decryption—this meaning that the server host is unable to read these messages without the appropriate encryption key. 
+The usage of GOChat is divided up based on the server and user. Users have the option to directly connect with the GOChat server directly using TCP. TCP connections are not recommended and the listener.go program was created to fix some of the usability issues related with raw TCP connections. The listener.go program supports client-side encryption and decryption—this meaning that the server host is unable to read these messages without the appropriate encryption key. 
 
 Alternatively, the user can use to the server using a GUI interface instead of a command line. The GOChat GUI further abstracts the connection process and improves discoverability of features. The GUI sends HTTP requests to the listener.go file which relays the requests to the server. In future, technologies like Web Sockets can be used to improve the frontend preformance.  
 

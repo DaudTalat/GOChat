@@ -13,7 +13,7 @@ Alternatively, the user can use to the server using a GUI interface instead of a
 
 ## Usage
 
-The following instructions assumes the user has installed go, npm, and is running the program on Windows machine. Please refer to the [go documentation](https://go.dev/doc/install) and [Node Js documentation](https://nodejs.org/en/download/) for more information on installing the dependencies required to run the project.   
+The following instructions assumes the user has installed go, npm, and is running the program on a Windows machine. Please refer to the [go documentation](https://go.dev/doc/install) and [Node Js documentation](https://nodejs.org/en/download/) for more information on installing the dependencies required to run the project.   
 
 ### Running GOChat Server 
 To start the server:
@@ -29,7 +29,7 @@ To connect with the GOChat server using telnet:
     ```ps1
     telnet localhost 8080
     ```
-Press enter to start the connection. After starting up the program, we are given a variety of features that we can accessed these being: 
+Press enter to start the connection. After starting up the program, the user can connect with the server using the commands below: 
 
     '/create <name>'     create a room and join it
     '/join <name>'       join a room with associated room name
@@ -48,7 +48,7 @@ To startup the listener:
     ```Powershell
     .\startGoListener.ps1
     ```
-This will run the software in the command-line in port 8080 (can be changed in sourcecode). As before, we are given a variety of features that we can accessed these being: 
+This will run the software in the command-line in port 8080 (can be changed in sourcecode). As before, a variety of features that are given to interact with the server: 
 
     '/create <name>'     create a room and join it
     '/join <name>'       join a room with associated room name

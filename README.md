@@ -74,5 +74,4 @@ To start Go GUI:
     .\startDevFrontend.ps1
     ```
 
-The user 
 

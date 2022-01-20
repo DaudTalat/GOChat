@@ -25,6 +25,10 @@ func main() {
 	cn, err := net.Dial("tcp", "localhost:8080")
 
 	//setting http client to
+	httpMiddleware := func(w http.ResponseWriter, r *http.Request) {
+		handler(w, r, cn)
+	}
+	http.HandleFunc("/", httpMiddleware)
 
 	//set backlog to nil
 	backlog = nil
